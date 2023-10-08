@@ -1,41 +1,37 @@
-import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
-const PhoneCart = ({phone}) => {
-    const { id, image, brand_name, phone_name, price, rating } = phone || {};
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+const PhoneCart = ({ phone }) => {
+  const { id, image, brand_name, phone_name, price, rating } = phone || {};
 
-    
-    // Add to Favorite
-    const handleAddFavorite = () => {
-        const addedFavorites = [];
-        const favoriteItem = JSON.parse(localStorage.getItem('favorites'))
+  // Add to Favorite
+ const handleAddFavorite = () => {
+    const addedFavorites = [];
+    const favoriteItem = JSON.parse(localStorage.getItem("favorites"));
 
-        // When local storage is empty, then the if statement will be executed
-        if(!favoriteItem){
-            addedFavorites.push(phone)
-            localStorage.setItem('favorites',JSON.stringify(addedFavorites))
-        }
-        else{
-
-            const isExists = favoriteItem.find(phone => phone.id === id);
-            console.log(isExists);
-
-            addedFavorites.push(...favoriteItem, phone)
-            localStorage.setItem('favorites',JSON.stringify(addedFavorites))
-            toast.success('Item added to favorites')
-
-        }
-        console.log(favoriteItem);
+    // When local storage is empty, then the if statement will be executed
+    if (!favoriteItem) {
+      addedFavorites.push(phone);
+      localStorage.setItem("favorites", JSON.stringify(addedFavorites));
+    } else {
+      const isExists = favoriteItem.find((phone) => phone.id === id);
+      if (!isExists) {
+        addedFavorites.push(...favoriteItem, phone);
+        localStorage.setItem("favorites", JSON.stringify(addedFavorites));
+        toast.success("Item added to favorites");
+      }
+      else{
+        toast.error('Already added')
+      }
+      
     }
-    
+    console.log(favoriteItem);
+  };
+
   return (
     <div className="py-10">
       <div className="relative flex w-full max-w-[48rem] flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
         <div className="relative m-0 w-2/5 shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border text-gray-700">
-          <img
-            src={image}
-            alt="image"
-            className="h-full w-full object-cover"
-          />
+          <img src={image} alt="image" className="h-full w-full object-cover" />
         </div>
         <div className="p-6">
           <h6 className="mb-4 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal text-sky-300 antialiased">
@@ -49,7 +45,7 @@ const PhoneCart = ({phone}) => {
           </p>
           <a className="inline-block" href="#">
             <button
-            onClick={handleAddFavorite}
+              onClick={handleAddFavorite}
               className="flex select-none items-center gap-2 rounded-lg py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-sky-500 transition-all hover:bg-sky-500/10 active:bg-sky-300/50 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               type="button"
             >
@@ -70,7 +66,7 @@ const PhoneCart = ({phone}) => {
                 ></path>
               </svg>
             </button>
-            <ToastContainer/>
+            <ToastContainer />
           </a>
         </div>
       </div>
