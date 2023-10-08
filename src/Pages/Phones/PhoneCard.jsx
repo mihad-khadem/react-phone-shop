@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
+
 const PhoneCard = ({ phone }) => {
-  const { image, brand_name, phone_name, price, rating } = phone;
+    // Car Details
+  const { id, image, brand_name, phone_name, price, rating } = phone || {};
   return (
     <div>
       <div className="relative flex w-70 h-70 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
@@ -20,17 +23,18 @@ const PhoneCard = ({ phone }) => {
             
           </div>
           <p>{brand_name}</p>
+          <p>{rating}</p>
           <p className="block font-sans text-sm font-normal leading-normal text-gray-700 antialiased opacity-75">
             
           </p>
         </div>
         <div className="p-6 pt-0">
-          <button
+          <Link to={`/phones/${id}`}><button
             className="block w-full select-none rounded-lg bg-sky-200 py-3 px-6 text-center align-middle text-xs font-bold uppercase text-blue-gray- transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button"
           >
-           + Favorite
-          </button>
+           See Details
+          </button></Link>
         </div>
       </div>
     </div>

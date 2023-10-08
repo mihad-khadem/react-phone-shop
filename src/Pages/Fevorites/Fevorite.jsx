@@ -1,6 +1,6 @@
 const Favorite = () => {
     return (
-        <div>
+        <div className="min-h-[70vh]"> 
             Favorites
         </div>
     );

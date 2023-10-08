@@ -1,7 +1,6 @@
 import PhoneCard from "./PhoneCard";
 
 const Phones = ({ phones }) => {
-  console.log(phones);
   return (
     <div>
       <h2 className="text-center text-3xl font-semibold">Our Phones</h2>
